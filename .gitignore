@@ -8,6 +8,7 @@ vendor/
 public/css
 public/js
 mix-manifest\.json
+package-lock.json
 
 # Editor files
 .vscode/
