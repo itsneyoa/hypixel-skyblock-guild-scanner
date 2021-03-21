@@ -114,6 +114,7 @@
                 <div class="w-1/6 py-3 leading-4 hidden md:block">Profile</div>
                 <div class="w-1/6 py-3 leading-4">Weight</div>
                 <div class="w-1/6 py-3 leading-4">Skills</div>
+                <div class="w-1/6 py-3 leading-4">Skill Exp</div>
                 <div class="w-1/6 py-3 leading-4">Catacombs</div>
                 <div class="w-1/6 py-3 leading-4">Slayers</div>
               </div>
@@ -135,6 +136,10 @@
                     <div class="w-1/6">
                       <span v-if="player.skills == null" class="px-2 py-1 bg-red-400 text-gray-800 text-sm rounded-md">API Disabled</span>
                       <span v-else>{{ formatNumber(player.skills.average_skills) }}</span>
+                    </div>
+                    <div class="w-1/6">
+                      <span v-if="player.skills == null" class="px-2 py-1 bg-red-400 text-gray-800 text-sm rounded-md">API Disabled</span>
+                      <span v-else>{{ formatNumber(getManiacsSkills(player)) }}</span>
                     </div>
                     <div class="w-1/6">
                       <span v-if="player.dungeons == null" class="px-2 py-1 bg-red-400 text-gray-800 text-sm rounded-md">No Data</span>
@@ -293,6 +298,25 @@ export default {
       })
 
       return value / countedPlayers
+    },
+
+    getManiacsSkills(playerData) {
+      const lv50 = 55172425
+      const lv60 = 111672425
+      var exp = 0
+      if (playerData.skills.mining.experience >= lv60) exp += lv60
+      else exp += playerData.skills.mining.experience
+      if (playerData.skills.foraging.experience >= lv50) exp += lv50
+      else exp += playerData.skills.foraging.experience
+      if (playerData.skills.farming.experience >= lv60) exp += lv60
+      else exp += playerData.skills.farming.experience
+      if (playerData.skills.combat.experience >= lv60) exp += lv60
+      else exp += playerData.skills.combat.experience
+      if (playerData.skills.fishing.experience >= lv50) exp += lv50
+      else exp += playerData.skills.fishing.experience
+      if (playerData.skills.taming.experience >= lv50) exp += lv50
+      else exp += playerData.skills.taming.experience
+      return Math.floor(exp)
     }
   },
 
