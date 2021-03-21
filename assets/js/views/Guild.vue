@@ -314,8 +314,6 @@ export default {
       else exp += playerData.skills.combat.experience
       if (playerData.skills.fishing.experience >= lv50) exp += lv50
       else exp += playerData.skills.fishing.experience
-      if (playerData.skills.taming.experience >= lv50) exp += lv50
-      else exp += playerData.skills.taming.experience
       return Math.floor(exp)
     }
   },
